@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <h1> Expense Tracker</h1>
+    <a href="{% url 'add_expnese' %}">Add Expense</a>
+    <h2> Total Expenses: {{ total_expense }}</h2>
+    <ul>
+        {% for expense in expenses %}
+    
+        <li> <a href="{% url 'expense_detail' expense.id %}">{{ expense.category }}</li></a> 
+        <div> {{ expense.amount }} ({{ expense.date }})
+        <a href="{% url 'delete_expense' expense.id %}"> Delete </a></div>
+        <br> <br>
+        {% empty %}
+
+        <li> No expenses found.</li>
+
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
